@@ -37,9 +37,30 @@ export const getBooks = async (
 
 export const addBook = async (book: BookDTORequest): Promise<void> => {
     try {
-        await apiClient.post('/Book/Add', book);  
+        await apiClient.post('/Book/Add', book);
     } catch (error) {
         console.error('Error adding book:', error);
         throw new Error('Failed to add book');
     }
 };
+
+export const getBookById = async (id: string): Promise<BookDTOResponse> => {
+    try {
+        const response = await apiClient.get<BookDTOResponse>(`/Book/GetById/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching book:', error);
+        throw new Error('Failed to fetch book');
+
+    }
+};
+
+export const updateBook = async (id: string, book: BookDTOResponse
+): Promise<void> => {
+    try {
+        await apiClient.put<BookDTOResponse>(`/Book/Update/${id}`, book);
+    } catch (error) {
+        console.error('Error updating book:', error);
+        throw new Error('Failed to update book');
+    }
+}

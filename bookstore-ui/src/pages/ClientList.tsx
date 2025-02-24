@@ -4,13 +4,13 @@ import CustomPagination from '../components/layout/Pagination';
 import { Box } from '@mui/material';
 import Breadcrumb from '../components/layout/BreadCrumb';
 import TableSkeleton from '../components/layout/TableSkeleton';
-import { useListClients } from '../hooks/ListClientHook';
+import { useListClients } from '../hooks/clients/ListClientHook';
 
 const ClientList: React.FC = () => {
   const { clients, pagination, loading, error, fetchClients } = useListClients();
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ padding: 3 }}>
       <Breadcrumb
         paths={[
           { label: 'Home', href: '/' },

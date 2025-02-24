@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { PaginationHeader } from '../api/models/pagination/PaginationHeader';
-import { PaginationParams } from '../api/models/pagination/PaginationParams';
-import { ClientDTOResponse } from '../api/models/Clients/ClienteDTOResponse';
-import { getClients } from '../api/endpoints/ClientApi';
+import { ClientDTOResponse } from '../../api/models/Clients/ClienteDTOResponse';
+import { PaginationHeader } from '../../api/models/pagination/PaginationHeader';
+import { PaginationParams } from '../../api/models/pagination/PaginationParams';
+import { getClients } from '../../api/endpoints/ClientApi';
+
 
 export const useListClients = () => {
     const [clients, setClients] = useState<ClientDTOResponse[]>([]);

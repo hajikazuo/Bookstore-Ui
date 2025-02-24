@@ -3,7 +3,7 @@ import Breadcrumb from '../components/layout/BreadCrumb';
 
 const Homepage: React.FC = () => {
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ padding: 3 }}>
       <Breadcrumb
         paths={[
           { label: 'Home', href: '/' },

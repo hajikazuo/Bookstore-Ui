@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Box, CircularProgress, Stack, Snackbar, Alert, TextField } from '@mui/material';
-import { useAddBook } from '../hooks/AddBookHook';
 import { BookDTORequest } from '../api/models/Books/BookDTORequest';
+import { useAddBook } from '../hooks/books/AddBookHook';
+import Breadcrumb from '../components/layout/BreadCrumb';
 
 
 const BookAdd = () => {
@@ -30,6 +31,13 @@ const BookAdd = () => {
 
     return (
         <Box sx={{ padding: 3 }}>
+            <Breadcrumb
+                paths={[
+                    { label: 'Home', href: '/' },
+                    { label: 'Books' },
+                    { label: 'Add book' },
+                ]}
+            />
             <h1>Add New Book</h1>
 
             <form onSubmit={handleSubmit}>
@@ -105,6 +113,7 @@ const BookAdd = () => {
                 anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             >
                 <Alert
+                    variant="filled"
                     onClose={handleCloseSnackbar}
                     severity={error ? 'error' : 'success'}
                     sx={{ width: '100%' }}

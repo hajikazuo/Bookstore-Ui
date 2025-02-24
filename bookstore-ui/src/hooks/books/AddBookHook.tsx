@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { addBook as addBookApi } from '../api/endpoints/BookApi';
-import { BookDTORequest } from '../api/models/Books/BookDTORequest';
+import { addBook as addBookApi } from '../../api/endpoints/BookApi';
+import { BookDTORequest } from '../../api/models/Books/BookDTORequest';
+
 
 export const useAddBook = () => {
     const [loading, setLoading] = useState(false);
@@ -10,6 +11,9 @@ export const useAddBook = () => {
 
     const addBook = async (newBook: BookDTORequest) => {
         setLoading(true);
+        setError(null);  
+        setSnackbarMessage('');
+
         try {
             await addBookApi(newBook); 
             setSnackbarMessage('Book added successfully!');

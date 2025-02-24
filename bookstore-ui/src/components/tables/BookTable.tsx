@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { BookDTOResponse } from "../../api/models/Books/BookDTOResponse";
 import {
   Table,
@@ -8,6 +9,8 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Button,
+  ButtonGroup,
 } from "@mui/material";
 
 interface BookListProps {
@@ -15,6 +18,16 @@ interface BookListProps {
 }
 
 const BookTable: React.FC<BookListProps> = ({ books = [] }) => {
+  const navigate = useNavigate();
+
+  const handleViewDetails = (bookId: string) => {
+    navigate(`/books/details/${bookId}`);
+  };
+
+  const handleEditBook = (bookId: string) => {
+    navigate(`/books/update/${bookId}`);
+  };
+
   return (
     <TableContainer component={Paper} sx={{ mt: 3 }}>
       <Table>
@@ -25,6 +38,7 @@ const BookTable: React.FC<BookListProps> = ({ books = [] }) => {
             <TableCell><strong>Publisher</strong></TableCell>
             <TableCell><strong>Year</strong></TableCell>
             <TableCell><strong>Edition</strong></TableCell>
+            <TableCell><strong>Action</strong></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -35,6 +49,22 @@ const BookTable: React.FC<BookListProps> = ({ books = [] }) => {
               <TableCell>{book.publisher}</TableCell>
               <TableCell>{book.year}</TableCell>
               <TableCell>{book.edition}</TableCell>
+              <TableCell>
+                <ButtonGroup variant="contained" aria-label="book actions">
+                  <Button
+                    color="secondary"
+                    onClick={() => handleEditBook(book.id)}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    color="primary"
+                    onClick={() => handleViewDetails(book.id)}
+                  >
+                    Details
+                  </Button>
+                </ButtonGroup>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

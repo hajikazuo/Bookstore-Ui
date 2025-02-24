@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { BookDTOResponse } from '../api/models/Books/BookDTOResponse';
-import { PaginationHeader } from '../api/models/pagination/PaginationHeader';
-import { PaginationParams } from '../api/models/pagination/PaginationParams';
-import { getBooks } from '../api/endpoints/BookApi';
+import { BookDTOResponse } from '../../api/models/Books/BookDTOResponse';
+import { PaginationHeader } from '../../api/models/pagination/PaginationHeader';
+import { PaginationParams } from '../../api/models/pagination/PaginationParams';
+import { getBooks } from '../../api/endpoints/BookApi';
+
 
 export const useListBooks = () => {
     const [books, setBooks] = useState<BookDTOResponse[]>([]);
