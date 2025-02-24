@@ -1,20 +1,27 @@
 import React from 'react';
-import { useBooks } from '../hooks/UseBooks';
-import BookList from '../components/BookList';
+import { useListBooks } from '../hooks/ListBookHook';
+import BookTable from '../components/BookTable';
 import CustomPagination from '../components/layout/Pagination';
 import { Box } from '@mui/material';
+import Breadcrumb from '../components/layout/BreadCrumb';
 
-const BooksPage: React.FC = () => {
-  const { books, pagination, loading, error, fetchBooks } = useBooks();
+const BookList: React.FC = () => {
+  const { books, pagination, loading, error, fetchBooks } = useListBooks();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
-  console.log(pagination)
   return (
     <Box sx={{ p: 3 }}>
+      <Breadcrumb
+        paths={[
+          { label: 'Home', href: '/' },
+          { label: 'Books' },
+          { label: 'List Books' }, 
+        ]}
+      />
       <h1>Books</h1>
-      <BookList books={books} />
+      <BookTable books={books} />
       {pagination && (
         <CustomPagination
           currentPage={pagination.currentPage}
@@ -28,4 +35,4 @@ const BooksPage: React.FC = () => {
   );
 };
 
-export default BooksPage;
+export default BookList;

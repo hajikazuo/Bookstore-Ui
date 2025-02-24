@@ -28,12 +28,12 @@ const NAVIGATION: Navigation = [
     icon: <BookIcon />,
     children: [
       {
-        segment: 'booklist',
+        segment: 'list',
         title: 'List Books',
         icon: <ListIcon />, 
       },
       {
-        segment: 'add-book',
+        segment: 'add',
         title: 'Add Book',
         icon: <AddCircleIcon />, 
       },

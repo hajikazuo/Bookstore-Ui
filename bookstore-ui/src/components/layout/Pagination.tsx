@@ -24,6 +24,7 @@ const CustomPagination: React.FC<PaginationProps> = ({
       color="primary" 
       variant="outlined"
       shape="rounded"
+      sx={{ mt:2 }}
     />
   );
 };

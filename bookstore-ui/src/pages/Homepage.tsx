@@ -1,10 +1,16 @@
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Breadcrumb from '../components/layout/BreadCrumb';
 
 const Homepage: React.FC = () => {
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4">Welcome to the App</Typography>
+      <Breadcrumb
+        paths={[
+          { label: 'Home', href: '/' },
+          { label: 'Welcome' }, 
+        ]}
+      />
+      <h1>Welcome to the App</h1>
     </Box>
   );
 };
