@@ -45,12 +45,12 @@ const NAVIGATION: Navigation = [
     icon: <PersonIcon />,
     children: [
       {
-        segment: 'list-clients',
+        segment: 'list',
         title: 'List Clients',
         icon: <ListIcon />, 
       },
       {
-        segment: 'add-client',
+        segment: 'add',
         title: 'Add Client',
         icon: <AddCircleIcon />, 
       },

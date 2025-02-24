@@ -1,24 +1,24 @@
 import React from 'react';
-import { useListBooks } from '../hooks/ListBookHook';
-import BookTable from '../components/tables/BookTable';
+import ClientTable from '../components/tables/ClientTable';
 import CustomPagination from '../components/layout/Pagination';
 import { Box } from '@mui/material';
 import Breadcrumb from '../components/layout/BreadCrumb';
 import TableSkeleton from '../components/layout/TableSkeleton';
+import { useListClients } from '../hooks/ListClientHook';
 
-const BookList: React.FC = () => {
-  const { books, pagination, loading, error, fetchBooks } = useListBooks();
+const ClientList: React.FC = () => {
+  const { clients, pagination, loading, error, fetchClients } = useListClients();
 
   return (
     <Box sx={{ p: 3 }}>
       <Breadcrumb
         paths={[
           { label: 'Home', href: '/' },
-          { label: 'Books' },
-          { label: 'List Books' }, 
+          { label: 'Clients' },
+          { label: 'List Clients' }, 
         ]}
       />
-      <h1>Books</h1>
+      <h1>Clients</h1>
 
       {loading ? (
         <TableSkeleton rows={10} columns={5} />
@@ -26,13 +26,13 @@ const BookList: React.FC = () => {
         <p style={{ color: 'red' }}>{error}</p>
       ) : (
         <>
-          <BookTable books={books} />
+          <ClientTable clients={clients} />
           {pagination && (
             <CustomPagination
               currentPage={pagination.currentPage}
               totalPages={pagination.totalPages}
               onPageChange={(pageNumber) =>
-                fetchBooks({ pageNumber, pageSize: pagination.pageSize })
+                fetchClients({ pageNumber, pageSize: pagination.pageSize })
               }
             />
           )}
@@ -42,4 +42,4 @@ const BookList: React.FC = () => {
   );
 };
 
-export default BookList;
+export default ClientList;

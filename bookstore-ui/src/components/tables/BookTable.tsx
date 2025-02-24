@@ -1,5 +1,5 @@
 import React from "react";
-import { BookDTOResponse } from "../api/models/Books/BookDTOResponse";
+import { BookDTOResponse } from "../../api/models/Books/BookDTOResponse";
 import {
   Table,
   TableBody,
