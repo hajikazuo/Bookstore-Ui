@@ -3,6 +3,7 @@ import { BookDTORequest } from "../models/Books/BookDTORequest";
 import { BookDTOResponse } from "../models/Books/BookDTOResponse";
 import { PaginationHeader } from "../models/pagination/PaginationHeader";
 import { PaginationParams } from "../models/pagination/PaginationParams";
+import { getAuthToken } from "./AuthApi";
 
 export const getBooks = async (
     paginationParams: PaginationParams
@@ -35,15 +36,6 @@ export const getBooks = async (
     };
 };
 
-export const addBook = async (book: BookDTORequest): Promise<void> => {
-    try {
-        await apiClient.post('/Book/Add', book);
-    } catch (error) {
-        console.error('Error adding book:', error);
-        throw new Error('Failed to add book');
-    }
-};
-
 export const getBookById = async (id: string): Promise<BookDTOResponse> => {
     try {
         const response = await apiClient.get<BookDTOResponse>(`/Book/GetById/${id}`);
@@ -52,6 +44,15 @@ export const getBookById = async (id: string): Promise<BookDTOResponse> => {
         console.error('Error fetching book:', error);
         throw new Error('Failed to fetch book');
 
+    }
+};
+
+export const addBook = async (book: BookDTORequest): Promise<void> => {
+    try {
+        await apiClient.post('/Book/Add', book);
+    } catch (error) {
+        console.error('Error adding book:', error);
+        throw new Error('Failed to add book');
     }
 };
 
@@ -64,3 +65,21 @@ export const updateBook = async (id: string, book: BookDTOResponse
         throw new Error('Failed to update book');
     }
 }
+
+export const deleteBook = async (id: string): Promise<void> => {
+    const token = getAuthToken();
+    if (!token) {
+        throw new Error("No token found");
+    }
+    
+    try {
+        await apiClient.delete(`/Book/Remove/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`, 
+            },
+        });
+    } catch (error) {
+        console.error('Error deleting book:', error);
+        throw new Error('Failed to delete book');
+    }
+};

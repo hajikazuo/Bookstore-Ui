@@ -1,30 +1,12 @@
-import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getBookById } from '../api/endpoints/BookApi';
 import { TextField, Button, Snackbar, Box, Stack, Alert } from '@mui/material';
-import { BookDTOResponse } from '../api/models/Books/BookDTOResponse';
 import { useUpdateBook } from '../hooks/books/UpdateBookHook';
 import Breadcrumb from '../components/layout/BreadCrumb';
 
 const BookUpdate = () => {
     const { bookId } = useParams<{ bookId: string }>();
     const navigate = useNavigate();
-    const { loading, error, updateBookHandler, openSnackbar, snackbarMessage, handleCloseSnackbar } = useUpdateBook();
-    const [book, setBook] = useState<BookDTOResponse | null>(null);
-
-    useEffect(() => {
-        if (bookId) {
-            const fetchBook = async () => {
-                try {
-                    const fetchedBook = await getBookById(bookId);
-                    setBook(fetchedBook);
-                } catch (err) {
-                    console.error('Error fetching book details:', err);
-                }
-            };
-            fetchBook();
-        }
-    }, [bookId]);
+    const { loading, error, book, setBook, updateBookHandler, openSnackbar, snackbarMessage, handleCloseSnackbar } = useUpdateBook(bookId);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (book) {
